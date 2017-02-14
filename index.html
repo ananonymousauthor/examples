@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+
+    <style type="text/css">
+
+        body {
+            background-color: #eee;
+        }
+
+        .container {
+            background-color: #fff;
+            min-width: 1100px;
+        }
+
+        h1.headline small {
+            display: block;
+        }
+
+        header {
+            margin-bottom: 40px;
+        }
+
+        nav {
+            text-align: center;
+        }
+        nav span {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .noscript-content {
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+            background-color: darkred;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .next {
+            float:right;
+        }
+        .prev {
+            float: left;
+        }
+
+        .data-col {
+            min-width: 300px;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        var examples = [
+
+            {
+                "provider": "http://hotels.com",
+                "hotel": "NH Berlin Mitte",
+                "requestcountry": "Germany",
+                "timezoneoffset": "-120",
+
+                "first": {
+                    "price": "EUR 93",
+                    "accesstime": "22.05.2016  01:16:57",
+                    "navigator.userAgent": "Mozilla/5.0 (Android; Mobile; rv:33.0) Gecko/33.0 Firefox/33.0",
+                    "navigator.platform": "Linux armv7l",
+                    "navigator.vendor": "null",
+                    "navigator.productSub": "20100101",
+                    "navigator.languages": '["de"]',
+                    "httpHeader.accept": null,
+                    "httpHeader.accept_language": "de",
+                    "httpHeader.accept_encoding": null,
+                    "navigator.plugins": "[]",
+                    "navigator.mimeTypes": "[]",
+                    "navigator.cookieEnabled": 1,
+                    "screen.colorDepth": 24,
+                    "screen.pixelDepth": 24,
+                    "screen.width": 360,
+                    "screen.availWidth": 360,
+                    "screen.height": 640,
+                    "screen.availHeight": 588,
+                    "navigator.language": "de",
+                },
+                "second": {
+                    "price": "EUR 129",
+                    "accesstime": "22.05.2016  01:42:12",
+                    "navigator.userAgent": "Mozilla/5.0 (iPad; CPU OS 5_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko ) Version/5.1 Mobile/9B176 Safari/7534.48.3",
+                    "navigator.platform": "Linux armv7l",
+                    "navigator.vendor": "Google Inc.",
+                    "navigator.productSub": "20030107",
+                    "navigator.languages": '["ru"]',
+                    "httpHeader.accept": null,
+                    "httpHeader.accept_language": "ru",
+                    "httpHeader.accept_encoding": null,
+                    "navigator.plugins": "[]",
+                    "navigator.mimeTypes": "[]",
+                    "navigator.cookieEnabled": 1,
+                    "screen.colorDepth": 32,
+                    "screen.pixelDepth": 32,
+                    "screen.width": 1024,
+                    "screen.availWidth": 1024,
+                    "screen.height": 552,
+                    "screen.availHeight": 507,
+                    "navigator.language": "ru",
+                }
+            },
+
+            {
+                "provider": "http://booking.com",
+                "hotel": "NH Berlin Mitte",
+                "requestcountry": "Germany",
+                "timezoneoffset": "-120",
+
+                "first": {
+                    "price": "EUR 92.65",
+                    "accesstime": "21.05.2016  13:44:35",
+                    "navigator.userAgent": "Mozilla/5.0 (Android; Mobile; rv:32.0) Gecko/32.0 Firefox/32.0",
+                    "navigator.platform": "Linux armv7l",
+                    "navigator.vendor": "null",
+                    "navigator.productSub": "20100101",
+                    "navigator.languages": '["de"]',
+                    "httpHeader.accept": null,
+                    "httpHeader.accept_language": "de",
+                    "httpHeader.accept_encoding": null,
+                    "navigator.plugins": "[]",
+                    "navigator.mimeTypes": "[]",
+                    "navigator.cookieEnabled": 1,
+                    "screen.colorDepth": 24,
+                    "screen.pixelDepth": 24,
+                    "screen.width": 360,
+                    "screen.availWidth": 360,
+                    "screen.height": 640,
+                    "screen.availHeight": 588,
+                    "navigator.language": "de"
+                },
+                "second": {
+                    "price": "EUR 93",
+                    "accesstime": "21.05.2016  14:17:20",
+                    "navigator.userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 6_0_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A523 Safari/8536.25",
+                    "navigator.platform": "iPhone",
+                    "navigator.vendor": "Apple Computer, Inc.",
+                    "navigator.productSub": "20030107",
+                    "navigator.languages": '["de-de"]',
+                    "httpHeader.accept": null,
+                    "httpHeader.accept_language": "de-de",
+                    "httpHeader.accept_encoding": null,
+                    "navigator.plugins": '[{"n":"QuickTime Plug-in","d":"The QuickTime Plug-in allows you to view a wide variety of multimedia content in web pages. For more information, visit the &lt;A HREF=\"http://www.apple.com/quicktime\"&gt;QuickTime&lt;/A&gt; Web site.","f":"QuickTime Plugin.webplugin"}]',
+                    "navigator.mimeTypes": '[{"n":"audio/3gpp","d":"3GPP media","f":"3gp,3gpp"},{"n":"audio/basic","d":"uLaw/AU audio","f":"au,snd,ulw"},{"n":"audio/aiff","d":"AIFF audio","f":"aiff,aif,aifc,cdda"},{"n":"video/quicktime","d":"QuickTime Movie","f":"mov,qt,mqv"},{"n":"audio/x-mpeg3","d":"MP3 audio","f":"mp3,swa"},{"n":"audio/x-m4r","d":"AAC audio","f":"m4r"},{"n":"video/3gpp2","d":"3GPP2 media","f":"3g2,3gp2"},{"n":"audio/x-mp3","d":"MP3 audio","f":"mp3,swa"},{"n":"audio/aac","d":"AAC audio","f":"aac,adts"},{"n":"audio/mpegurl","d":"MPEG Audio Playlist","f":"m3u"},{"n":"video/mp4","d":"MPEG-4 media","f":"mp4"},{"n":"audio/x-m4b","d":"AAC audio book","f":"m4b"},{"n":"audio/scpls","d":"Audio Playlist","f":"pls"},{"n":"audio/mpeg","d":"MPEG audio","f":"mpeg,mpg,mp3,swa"},{"n":"audio/x-mpeg","d":"MPEG audio","f":"mpeg,mpg,mp3,swa"},{"n":"audio/x-m4p","d":"AAC audio (protected)","f":"m4p"},{"n":"audio/mp3","d":"MP3 audio","f":"mp3,swa"},{"n":"audio/x-aac","d":"AAC audio","f":"aac,adts"},{"n":"application/x-media-element-proxy-plugin","d":"Media element proxy plug-in"},{"n":"audio/amr","d":"AMR audio","f":"amr"},{"n":"audio/x-m4a","d":"AAC audio","f":"m4a"},{"n":"video/3gpp","d":"3GPP media","f":"3gp,3gpp"},{"n":"audio/x-mpegurl","d":"MPEG Audio Playlist","f":"m3u"},{"n":"audio/wav","d":"WAVE audio","f":"wav,bwf"},{"n":"application/x-mpegurl","d":"MPEG Video","f":"ts,m3u8"},{"n":"audio/mp4","d":"MPEG-4 media","f":"mp4"},{"n":"audio/x-caf","d":"CAF audio","f":"caf"},{"n":"audio/x-scpls","d":"Audio Playlist","f":"pls"},{"n":"application/vnd.apple.mpegurl","d":"MPEG Dynamic Playlist","f":"m3u,m3u8"},{"n":"audio/x-aiff","d":"AIFF audio","f":"aiff,aif,aifc,cdda"},{"n":"video/x-m4v","d":"Video (protected)","f":"m4v"},{"n":"audio/x-wav","d":"WAVE audio","f":"wav,bwf"},{"n":"audio/mpeg3","d":"MP3 audio","f":"mp3,swa"},{"n":"audio/3gpp2","d":"3GPP2 media","f":"3g2,3gp2"}]',
+                    "navigator.cookieEnabled": 1,
+                    "screen.colorDepth": 32,
+                    "screen.pixelDepth": 32,
+                    "screen.width": 320,
+                    "screen.availWidth": 320,
+                    "screen.height": 480,
+                    "screen.availHeight": 441,
+                    "navigator.language": "de-de"
+                }
+            },
+
+            {
+                "provider": "http://hotels.com",
+                "hotel": "Hotel Ambiente",
+                "requestcountry": "Germany",
+                "timezoneoffset": "-120",
+
+                "first": {
+                    "price": "EUR 35",
+                    "accesstime": "16.05.2016 15:44:04",
+                    "navigator.userAgent": "Mozilla/5.0 (Linux; U; Android 2.3.6; it-it; GT-S6500 Build/GINGERBREAD) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
+                    "navigator.platform": "Linux armv7l",
+                    "navigator.vendor": "Google Inc.",
+                    "navigator.productSub": "20030107",
+                    "navigator.languages": '["en"]',
+                    "httpHeader.accept": null,
+                    "httpHeader.accept_language": "en",
+                    "httpHeader.accept_encoding": null,
+                    "navigator.plugins": '[{"n":"Shockwave Flash","d":"Shockwave Flash 10.3 r186","f":"libflashplayer.so"}]',
+                    "navigator.mimeTypes": '[{"n":"application/x-shockwave-flash","d":"Shockwave Flash","f":"swf"},{"n":"application/futuresplash","d":"FutureSplash Player","f":"spl"}]',
+                    "navigator.cookieEnabled": 1,
+                    "screen.colorDepth": 24,
+                    "screen.pixelDepth": 24,
+                    "screen.width": 800,
+                    "screen.availWidth": 800,
+                    "screen.height": 392,
+                    "screen.availHeight": 360,
+                    "navigator.language": "en",
+                },
+                "second": {
+                    "price": "EUR 75",
+                    "accesstime": "16.05.2016 18:53:13",
+                    "navigator.userAgent": "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:33.0) Gecko/20100101 Firefox/33.0",
+                    "navigator.platform": "Win32",
+                    "navigator.vendor": "null",
+                    "navigator.productSub": "20100101",
+                    "navigator.languages": '["en-US"]',
+                    "httpHeader.accept": null,
+                    "httpHeader.accept_language": "en-US",
+                    "httpHeader.accept_encoding": null,
+                    "navigator.plugins": '[{"n":"Shockwave Flash","d":"Shockwave Flash 15.0 r0","f":"NPSWF32_15_0_0_239.dll"},{"n":"Google Update","d":"Google Update","f":"npGoogleUpdate3.dll"},{"n":"Java(TM) Platform SE 7 U71","d":"Next Generation Java Plug-in 10.71.2 for Mozilla browsers","f":"npjp2.dll"},{"n":"Java Deployment Toolkit 7.0.710.14","d":"NPRuntime Script Plug-in Library for Java(TM) Deploy","f":"npdeployJava1.dll"},{"n":"Photo Gallery","d":"NPWLPG","f":"NPWLPG.dll"},{"n":"Adobe Acrobat","d":"Adobe PDF Plug-In For Firefox and Netscape 10.1.2","f":"nppdf32.dll"},{"n":"Adobe Acrobat","d":"Adobe PDF Plug-In For Firefox and Netscape 10.1.2","f":"nppdf32.dll"},{"n":"Microsoft Office 2010","d":"The plug-in allows you to open and edit files using Microsoft Office applications","f":"NPSPWRAP.DLL"},{"n":"Microsoft Office 2010","d":"Office Authorization plug-in for NPAPI browsers","f":"NPAUTHZ.DLL"}]',
+                    "navigator.mimeTypes": '[{"n":"application/x-shockwave-flash","d":"Adobe Flash movie","f":"swf"},{"n":"application/futuresplash","d":"FutureSplash movie","f":"spl"},{"n":"application/x-vnd.google.update3webcontrol.3"},{"n":"application/x-vnd.google.oneclickctrl.9"},{"n":"application/x-java-applet","d":"Java Applet"},{"n":"application/x-java-bean","d":"JavaBeans"},{"n":"application/x-java-vm"},{"n":"application/x-java-applet;version=1.1.1"},{"n":"application/x-java-bean;version=1.1.1"},{"n":"application/x-java-applet;version=1.1"},{"n":"application/x-java-bean;version=1.1"},{"n":"application/x-java-applet;version=1.2"},{"n":"application/x-java-bean;version=1.2"},{"n":"application/x-java-applet;version=1.1.3"},{"n":"application/x-java-bean;version=1.1.3"},{"n":"application/x-java-applet;version=1.1.2"},{"n":"application/x-java-bean;version=1.1.2"},{"n":"application/x-java-applet;version=1.3"},{"n":"application/x-java-bean;version=1.3"},{"n":"application/x-java-applet;version=1.2.2"},{"n":"application/x-java-bean;version=1.2.2"},{"n":"application/x-java-applet;version=1.2.1"},{"n":"application/x-java-bean;version=1.2.1"},{"n":"application/x-java-applet;version=1.3.1"},{"n":"application/x-java-bean;version=1.3.1"},{"n":"application/x-java-applet;version=1.4"},{"n":"application/x-java-bean;version=1.4"},{"n":"application/x-java-applet;version=1.4.1"},{"n":"application/x-java-bean;version=1.4.1"},{"n":"application/x-java-applet;version=1.4.2"},{"n":"application/x-java-bean;version=1.4.2"},{"n":"application/x-java-applet;version=1.5"},{"n":"application/x-java-bean;version=1.5"},{"n":"application/x-java-applet;version=1.6"},{"n":"application/x-java-bean;version=1.6"},{"n":"application/x-java-applet;version=1.7"},{"n":"application/x-java-bean;version=1.7"},{"n":"application/x-java-applet;jpi-version=1.7.0_71"},{"n":"application/x-java-bean;jpi-version=1.7.0_71"},{"n":"application/x-java-vm-npruntime"},{"n":"application/x-java-applet;deploy=10.71.2"},{"n":"application/x-java-applet;javafx=2.2.71"},{"n":"application/java-deployment-toolkit"},{"n":"application/x-wlpg3-detect","d":"Photo Gallery","f":"wlpg"},{"n":"application/x-wlpg-detect","d":"Photo Gallery","f":"wlpg"},{"n":"application/pdf","d":"Acrobat Portable Document Format","f":"pdf"},{"n":"application/vnd.adobe.pdfxml","d":"Adobe PDF in XML Format","f":"pdfxml"},{"n":"application/vnd.adobe.x-mars","d":"Adobe PDF in XML Format","f":"mars"},{"n":"application/vnd.fdf","d":"Acrobat Forms Data Format","f":"fdf"},{"n":"application/vnd.adobe.xfdf","d":"XML Version of Acrobat Forms Data Format","f":"xfdf"},{"n":"application/vnd.adobe.xdp+xml","d":" Acrobat XML Data Package","f":"xdp"},{"n":"application/vnd.adobe.xfd+xml","d":"Adobe FormFlow99 Data File","f":"xfd"},{"n":"application/pdf","d":"Acrobat Portable Document Format","f":"pdf"},{"n":"application/vnd.adobe.pdfxml","d":"Adobe PDF in XML Format","f":"pdfxml"},{"n":"application/vnd.adobe.x-mars","d":"Adobe PDF in XML Format","f":"mars"},{"n":"application/vnd.fdf","d":"Acrobat Forms Data Format","f":"fdf"},{"n":"application/vnd.adobe.xfdf","d":"XML Version of Acrobat Forms Data Format","f":"xfdf"},{"n":"application/vnd.adobe.xdp+xml","d":" Acrobat XML Data Package","f":"xdp"},{"n":"application/vnd.adobe.xfd+xml","d":"Adobe FormFlow99 Data File","f":"xfd"},{"n":"application/x-sharepoint","d":"SharePoint Plug-in for Firefox"},{"n":"application/x-msoffice14","d":"14.0.4730.1010","f":"*"}]',
+                    "navigator.cookieEnabled": 1,
+                    "screen.colorDepth": 24,
+                    "screen.pixelDepth": 24,
+                    "screen.width": 1680,
+                    "screen.availWidth": 1680,
+                    "screen.height": 1050,
+                    "screen.availHeight": 966,
+                    "navigator.language": "en-US",
+                }
+            },
+
+            {
+                "provider": "http://hrs.com",
+                "hotel": "Amelie Mitte",
+                "requestcountry": "Germany",
+                "timezoneoffset": "-120",
+
+                "first": {
+                    "price": "EUR 93.45",
+                    "accesstime": "22.05.2016 19:39:51",
+                    "navigator.userAgent": "Mozilla/5.0 (Linux; Android 4.4.4; GT-I9100G Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36",
+                    "navigator.platform": "Linux armv7l",
+                    "navigator.vendor": "Google Inc.",
+                    "navigator.productSub": "20030107",
+                    "navigator.languages": '["de-DE"]',
+                    "httpHeader.accept": null,
+                    "httpHeader.accept_language": "de-DE",
+                    "httpHeader.accept_encoding": null,
+                    "navigator.plugins": "[]",
+                    "navigator.mimeTypes": "[]",
+                    "navigator.cookieEnabled": 1,
+                    "screen.colorDepth": 32,
+                    "screen.pixelDepth": 32,
+                    "screen.width": 320,
+                    "screen.availWidth": 320,
+                    "screen.height": 534,
+                    "screen.availHeight": 491,
+                    "navigator.language": "de-DE"
+                },
+                "second": {
+                    "price": "EUR 73.73",
+                    "accesstime": "22.05.2016 22:41:06",
+                    "navigator.userAgent": "Mozilla/5.0 (Linux; U; Android 4.1.2; ko-kr; SHV-E220S Build/JZO54K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
+                    "navigator.platform": "Linux armv7l",
+                    "navigator.vendor": "Google Inc.",
+                    "navigator.productSub": "20030107",
+                    "navigator.languages": '["ko-KR"]',
+                    "httpHeader.accept": null,
+                    "httpHeader.accept_language": "ko-KR",
+                    "httpHeader.accept_encoding": null,
+                    "navigator.plugins": "[]",
+                    "navigator.mimeTypes": "[]",
+                    "navigator.cookieEnabled": 1,
+                    "screen.colorDepth": 32,
+                    "screen.pixelDepth": 32,
+                    "screen.width": 720,
+                    "screen.availWidth": 720,
+                    "screen.height": 1280,
+                    "screen.availHeight": 1177,
+                    "navigator.language": "ko-KR",
+                }
+            },
+
+            {
+                "provider": "http://hrs.com",
+                "hotel": "Amelie Mitte",
+                "requestcountry": "India",
+                "timezoneoffset": "-330",
+
+                "first": {
+                    "price": "EUR 79",
+                    "accesstime": "23.05.2016 01:32:30",
+                    "navigator.userAgent": "Mozilla/5.0 (Linux; Android 4.4.4; GT-I9100G Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36",
+                    "navigator.platform": "Linux armv7l",
+                    "navigator.vendor": "Google Inc.",
+                    "navigator.productSub": "20030107",
+                    "navigator.languages": '["de-DE"]',
+                    "httpHeader.accept": null,
+                    "httpHeader.accept_language": "de-DE",
+                    "httpHeader.accept_encoding": null,
+                    "navigator.plugins": "[]",
+                    "navigator.mimeTypes": "[]",
+                    "navigator.cookieEnabled": 1,
+                    "screen.colorDepth": 32,
+                    "screen.pixelDepth": 32,
+                    "screen.width": 320,
+                    "screen.availWidth": 320,
+                    "screen.height": 534,
+                    "screen.availHeight": 491,
+                    "navigator.language": "de-DE"
+                },
+                "second": {
+                    "price": "EUR 73.73",
+                    "accesstime": "23.05.2016 04:17:14",
+                    "navigator.userAgent": "Mozilla/5.0 (Linux; U; Android 4.1.2; ko-kr; SHV-E220S Build/JZO54K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
+                    "navigator.platform": "Linux armv7l",
+                    "navigator.vendor": "Google Inc.",
+                    "navigator.productSub": "20030107",
+                    "navigator.languages": '["ko-KR"]',
+                    "httpHeader.accept": null,
+                    "httpHeader.accept_language": "ko-KR",
+                    "httpHeader.accept_encoding": null,
+                    "navigator.plugins": "[]",
+                    "navigator.mimeTypes": "[]",
+                    "navigator.cookieEnabled": 1,
+                    "screen.colorDepth": 32,
+                    "screen.pixelDepth": 32,
+                    "screen.width": 720,
+                    "screen.availWidth": 720,
+                    "screen.height": 1280,
+                    "screen.availHeight": 1177,
+                    "navigator.language": "ko-KR",
+                }
+            },
+
+        ];
+    </script>
+    <script type="text/javascript">
+
+        var exampleIndex = 0;
+        var mapping = [
+            {
+                id: "accesstime",
+                attribute: "accesstime",
+            },
+            {
+                id: "price",
+                attribute: "price",
+            },
+            {
+                id: "useragent",
+                attribute: "navigator.userAgent",
+            },
+            {
+                id: "platform",
+                attribute: "navigator.platform",
+            },
+            {
+                id: "vendor",
+                attribute: "navigator.vendor",
+            },
+            {
+                id: "productsub",
+                attribute: "navigator.productSub",
+            },
+            {
+                id: "languages",
+                attribute: "navigator.languages",
+            },
+            {
+                id: "language",
+                attribute: "navigator.language",
+            },
+            {
+                id: "accept",
+                attribute: "httpHeader.accept",
+            },
+            {
+                id: "accept-language",
+                attribute: "httpHeader.accept_language",
+            },
+            {
+                id: "accept-encoding",
+                attribute: "httpHeader.accept_encoding",
+            },
+            {
+                id: "plugins",
+                attribute: "navigator.plugins",
+            },
+            {
+                id: "mimetypes",
+                attribute: "navigator.mimeTypes",
+            },
+            {
+                id: "cookieenabled",
+                attribute: "navigator.cookieEnabled",
+            },
+            {
+                id: "colordepth",
+                attribute: "screen.colorDepth",
+            },
+            {
+                id: "pixeldepth",
+                attribute: "screen.pixelDepth",
+            },
+            {
+                id: "width",
+                attribute: "screen.width",
+            },
+            {
+                id: "availwidth",
+                attribute: "screen.availWidth",
+            },
+            {
+                id: "height",
+                attribute: "screen.height",
+            },
+            {
+                id: "availheight",
+                attribute: "screen.availHeight",
+            },
+        ];
+
+        var writeRow = function (example, id, attribute) {
+
+            $('#' + id + '1').text(String(example["first"][attribute]));
+            $('#' + id + '2').text(String(example["second"][attribute]));
+
+        };
+
+        var writeEqualRow = function (example, id) {
+
+            $('#' + id + '1').text(example[id]);
+            $('#' + id + '2').text(example[id]);
+
+        };
+
+        var fillTable = function (index, data) {
+
+            if (index < 0) {
+                exampleIndex = data.length-1;
+            } else if (index > data.length-1) {
+                exampleIndex = 0;
+            }
+
+            $("#example-num").text(String(exampleIndex+1) + " of " + String(examples.length));
+
+            writeEqualRow(data[exampleIndex], "provider");
+            writeEqualRow(data[exampleIndex], "hotel");
+            writeEqualRow(data[exampleIndex], "requestcountry");
+            writeEqualRow(data[exampleIndex], "timezoneoffset");
+
+            $.each(mapping, function (index, entryIdAttr) {
+
+                writeRow(data[exampleIndex], entryIdAttr.id, entryIdAttr.attribute);
+
+            });
+
+        };
+
+        $(document).ready(function () {
+
+            fillTable(exampleIndex, examples);
+
+            $(".prev").click(function () {
+                exampleIndex -= 1;
+                fillTable(exampleIndex, examples);
+            });
+
+            $(".next").click(function () {
+                exampleIndex += 1;
+                fillTable(exampleIndex, examples);
+            });
+
+        });
+
+    </script>
+
+</head>
+    <body>
+
+        <div class="container">
+
+            <header>
+                <h1 class="headline text-center">
+                    An Empirical Study of Online Price Discrimination
+                    <small>
+                        Exploring Custom Pricing Policies Depending on User Location and System Configuration
+                    </small>
+                </h1>
+            </header>
+            <noscript>
+                <div class="noscript-content">
+                    JavaScript required!
+                </div>
+            </noscript>
+            <section>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>Examples</h2>
+                    </div>
+                    <div class="panel-body">
+                        <nav class="clearfix">
+                            <a class="prev btn btn-default">Previous Example</a>
+                            <span id="example-num">1 of 3</span>
+                            <a class="next btn btn-default">Next Example</a>
+                        </nav>
+                    </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Provider</th>
+                                    <td class="data-col" id="provider1"></td>
+                                    <td class="data-col" id="provider2"></td>
+                                </tr>
+                                <tr>
+                                    <th>Hotel</th>
+                                    <td class="data-col" id="hotel1"></td>
+                                    <td class="data-col" id="hotel2"></td>
+                                </tr>
+                                <tr>
+                                    <th>Price</th>
+                                    <td class="data-col" id="price1"></td>
+                                    <td class="data-col" id="price2"></td>
+                                </tr>
+                                <tr>
+                                    <th>Access Time</th>
+                                    <td class="data-col" id="accesstime1"></td>
+                                    <td class="data-col" id="accesstime2"></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Request Country</th>
+                                    <td class="data-col" id="requestcountry1"></td>
+                                    <td class="data-col" id="requestcountry2"></td>
+                                </tr>
+                                <tr>
+                                    <th>Timezone Offset</th>
+                                    <td class="data-col" id="timezoneoffset1"></td>
+                                    <td class="data-col" id="timezoneoffset2"></td>
+                                </tr>
+                                <tr>
+                                    <th>navigator.userAgent</th>
+                                    <td class="data-col" id="useragent1"></td>
+                                    <td class="data-col" id="useragent2"></td>
+                                </tr>
+                                <tr>
+                                    <th>navigator.platform</th>
+                                    <td class="data-col" id="platform1"></td>
+                                    <td class="data-col" id="platform2"></td>
+                                </tr>
+                                <tr>
+                                    <th>navigator.vendor</th>
+                                    <td class="data-col" id="vendor1"></td>
+                                    <td class="data-col" id="vendor2"></td>
+                                </tr>
+                                <tr>
+                                    <th>navigator.productSub</th>
+                                    <td class="data-col" id="productsub1"></td>
+                                    <td class="data-col" id="productsub2"></td>
+                                </tr>
+                                <tr>
+                                    <th>navigator.languages</th>
+                                    <td class="data-col" id="languages1"></td>
+                                    <td class="data-col" id="languages2"></td>
+                                </tr>
+                                <tr>
+                                    <th>httpHeader.accept</th>
+                                    <td class="data-col" id="accept1"></td>
+                                    <td class="data-col" id="accept2"></td>
+                                </tr>
+                                <tr>
+                                    <th>httpHeader.accept_language</th>
+                                    <td class="data-col" id="accept-language1"></td>
+                                    <td class="data-col" id="accept-language2"></td>
+                                </tr>
+                                <tr>
+                                    <th>httpHeader.accept_encoding</th>
+                                    <td class="data-col" id="accept-encoding1"></td>
+                                    <td class="data-col" id="accept-encoding2"></td>
+                                </tr>
+                                <tr>
+                                    <th>navigator.plugins</th>
+                                    <td class="data-col" id="plugins1"></td>
+                                    <td class="data-col" id="plugins2"></td>
+                                </tr>
+                                <tr>
+                                    <th>navigator.mimeTypes</th>
+                                    <td class="data-col" id="mimetypes1"></td>
+                                    <td class="data-col" id="mimetypes2"></td>
+                                </tr>
+                                <tr>
+                                    <th>navigator.cookieEnabled</th>
+                                    <td class="data-col" id="cookieenabled1"></td>
+                                    <td class="data-col" id="cookieenabled2"></td>
+                                </tr>
+                                <tr>
+                                    <th>screen.colorDepth</th>
+                                    <td class="data-col" id="colordepth1"></td>
+                                    <td class="data-col" id="colordepth2"></td>
+                                </tr>
+                                <tr>
+                                    <th>screen.pixelDepth</th>
+                                    <td class="data-col" id="pixeldepth1"></td>
+                                    <td class="data-col" id="pixeldepth2"></td>
+                                </tr>
+                                <tr>
+                                    <th>screen.width</th>
+                                    <td class="data-col" id="width1"></td>
+                                    <td class="data-col" id="width2"></td>
+                                </tr>
+                                <tr>
+                                    <th>screen.availWidth</th>
+                                    <td class="data-col" id="availwidth1"></td>
+                                    <td class="data-col" id="availwidth2"></td>
+                                </tr>
+                                <tr>
+                                    <th>screen.height</th>
+                                    <td class="data-col" id="height1"></td>
+                                    <td class="data-col" id="height2"></td>
+                                </tr>
+                                <tr>
+                                    <th>screen.availHeight</th>
+                                    <td class="data-col" id="availheight1"></td>
+                                    <td class="data-col" id="availheight2"></td>
+                                </tr>
+                                <tr>
+                                    <th>navigator.language</th>
+                                    <td class="data-col" id="language1"></td>
+                                    <td class="data-col" id="language2"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </section>
+
+        </div>
+
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </body>
+</html>
